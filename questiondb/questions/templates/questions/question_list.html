@@ -1,0 +1,12 @@
+{% extends 'questions/base.html' %}
+
+{% block content %}
+
+<h1>Questions</h1>
+<ul>
+    {% for qst in question_list %}
+        <li>{{ qst.question_code }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
