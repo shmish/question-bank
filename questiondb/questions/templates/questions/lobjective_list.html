@@ -6,8 +6,10 @@
 <ul>
     {% for obj in lobjective_list %}
     <li>
-        <div class="col-md-4">{{ obj.objective_code }}</div>
-        <div class="col-md-4">{{ obj.objective_description }}</div>
+        <div class="row">
+            <div class="col-md-1">{{ obj.objective_code }}</div>
+            <div class="col-md-6">{{ obj.objective_description }}</div>
+        </div>
     </li>
     {% endfor %}
 </ul>
