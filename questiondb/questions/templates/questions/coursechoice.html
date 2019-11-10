@@ -1,0 +1,37 @@
+{% extends 'questions/base.html' %}
+
+{% block content %}
+
+<div class="container">
+<h1>Questions</h1>
+<div class="row">
+    <div class="col-md-3">
+        <div id="djangorandom">
+        {{ classroom.id }}
+            <form action="{% url 'questions:select_course' %}" method="get">
+                {% csrf_token %}
+                <div class="form-group">
+                    <select class="form-control" name="course_choice">
+                        {% for item in courses %}
+                            <option value={{ item.course_name }}>{{ item.get_course_name_display }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <span><input class="btn btn-primary" type="submit" value="Submit"></span>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <ul>
+            {% for name in objectives %}
+                <li>{{ name.objective_code }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+
+{% endblock %}

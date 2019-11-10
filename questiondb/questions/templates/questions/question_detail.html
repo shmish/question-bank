@@ -1,4 +1,29 @@
-<h1>{{ question_list.question_code }}</h1>
-<p>
-    {{ question_list.question_text }}
-</p>
+{% extends 'questions/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <p>Question Code: {{ object.question_code }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p>Learning Objective = {{ object.lobjective }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {{ object.question_text|safe }}
+        </div>
+    </div>
+    {% if object.document %}
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ object.document.url }}" width="100%" />
+        </div>
+    </div>
+{% endif %}
+</div>
+
+{% endblock %}

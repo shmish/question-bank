@@ -2,11 +2,20 @@
 
 {% block content %}
 
+{% regroup question_list by lobjective as lobjective_list %}
+<div class="container">
 <h1>Questions</h1>
 <ul>
-    {% for qst in question_list %}
-        <li>{{ qst.question_code }}</li>
+    {% for lobjective in lobjective_list %}
+        <li>{{ lobjective.grouper }}
+            <ul>
+                {% for item in lobjective.list %}
+                <li><a href="/questions/question-detail/{{ item.id }}/">{{ item.question_code }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
     {% endfor %}
 </ul>
+</div>
 
 {% endblock %}

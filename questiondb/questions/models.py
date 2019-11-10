@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 
 class Course(models.Model):
     COURSE_CHOICES = [
@@ -27,17 +26,16 @@ class Question(models.Model):
     question_text = models.TextField()
     lobjective = models.ForeignKey(Lobjective, on_delete=models.CASCADE)
     answer = models.CharField(max_length=40)
+    document = models.FileField(upload_to='documents/', blank=True)
 
-class QuestionForm(ModelForm):
-    class Meta:
-        model = Question
-        fields = ['question_code', 'question_text', 'lobjective', 'answer']
+class Document(models.Model):
+    question_code = models.CharField(max_length=255, blank=True)
+    question_text = models.TextField()
+    lobjective = models.ForeignKey(Lobjective, on_delete=models.CASCADE)
+    answer = models.CharField(max_length=40)
+    document = models.FileField(upload_to='documents/', blank=True)
 
-    def __init__(self, *args, **kwargs):
-        super(QuestionForm, self).__init__(*args, **kwargs)
-        self.fields['lobjective'].label = "Learning Objective"
-
-class LobjectiveForm(ModelForm):
-    class Meta:
-        model = Lobjective
-        fields = ['course', 'objective_code', 'objective_description']
+class Practice(models.Model):
+    name = models.CharField(max_length=20)
+    success = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
