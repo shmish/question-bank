@@ -59,7 +59,7 @@ def add_objective(request):
         if form.is_valid():
             objective_item = form.save(commit=False)
             objective_item.save()
-            return HttpResponseRedirect('/questions/objectives')
+            return redirect('questions:lobjective-list')
     else:
         form = LobjectiveForm()
     return render(request, 'questions/lobjective_form.html', {'form': form})
@@ -70,7 +70,8 @@ def model_form_upload(request):
         if form.is_valid():
             question_item = form.save(commit=False)
             question_item.save()
-            return redirect('index')
+            return redirect('questions:question-list')
+            
     else:
         form = QuestionForm()
     return render(request, 'questions/model_form_upload.html', {
