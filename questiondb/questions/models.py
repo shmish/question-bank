@@ -29,7 +29,7 @@ class Question(models.Model):
     question_code = models.CharField(max_length=12)
     question_text = models.TextField()
     lobjective = models.ForeignKey(Lobjective, on_delete=models.CASCADE)
-    answer = models.CharField(max_length=40)
+    answer = models.CharField(max_length=80)
     document = models.FileField(upload_to='documents/', blank=True)
 
 class Document(models.Model):
